@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'BMI Calculator',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -118,16 +119,16 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (BMI > 25) {
                             bgColor = Colors.red.shade200;
                           } else if (BMI < 18) {
-                            bgColor = Colors.yellow.shade100;
+                            bgColor = Colors.yellow.shade200;
                           } else {
-                            bgColor = Colors.green.shade300;
+                            bgColor = Colors.green.shade200;
                           }
 
                           result = 'Your BMI is: ${BMI.toStringAsFixed(2)}';
                           setState(() {});
                         } else {
                           result = 'Please Fillup all the fields';
-                          bgColor = Colors.red.shade100;
+                          bgColor = Colors.red.shade200;
                           setState(() {});
                         }
                       },

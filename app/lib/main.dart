@@ -33,6 +33,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var feetHeightController = TextEditingController(); //takes feet height
   var inchHeightController = TextEditingController(); // takes inch height
   var weightContorller = TextEditingController(); //takes weight
+  dynamic result = '';
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +94,30 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 41,
                   width: 150,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      var weight = weightContorller.text.toString();
+                      var feet = feetHeightController.text.toString();
+                      var inch = inchHeightController.text.toString();
+                      // ignore: unnecessary_null_comparison
+                      if (weight != '' && feet != '' && inch != '') {
+                        //calculate BMI
+                        var iwt = int.parse(weight);
+                        var ift = int.parse(feet);
+                        var iInch = int.parse(inch);
+
+                        var tInch = (ift * 12) + iInch;
+                        var tCM = tInch * 2.54;
+                        var tM = tCM / 100;
+
+                        var BMI = iwt / (tM * tM);
+
+                        result = 'Your BMI is: ${BMI.toStringAsFixed(2)}';
+                        setState(() {});
+                      } else {
+                        result = 'Please Fillup all the fields';
+                        setState(() {});
+                      }
+                    },
                     child: Text("Calculate"),
                   ),
                 ),
@@ -101,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   height: 11,
                 ),
                 Text(
-                  'Your BMI:',
+                  result,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
